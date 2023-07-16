@@ -1,0 +1,315 @@
+---
+import { Icon } from "astro-icon";
+import Layout from "@/layouts/Layout.astro";
+import Card from "@/components/card.astro";
+import IconLink from "@/components/icon_link.astro";
+import ProjectCard from "@/components/project_card.tsx";
+---
+
+<style>
+    .animate-floating {
+        animation: floating 4s cubic-bezier(0.37, 0, 0.63, 1) infinite;
+    }
+
+    @keyframes floating {
+        0%,
+        100% {
+            transform: translateY(-6%);
+        }
+        50% {
+            transform: translateY(6%);
+        }
+    }
+    @font-face {
+        font-family: "Quicksand";
+        src: url("/Quicksand-Medium.ttf") format("truetype");
+        font-weight: 500;
+        font-style: normal;
+        font-display: swap;
+    }
+
+    .font-quicksand {
+        font-family: "Quicksand", sans-serif;
+    }
+</style>
+
+<Layout title="Qrtz's portfolio">
+    <div>
+        <div class="max-w-screen-lg mx-auto px-4 sm:px-8 md:px-12">
+            <header class="py-4 flex items-center gap-4">
+                <span class="text-xl font-semibold">qrtz.it</span>
+                <div class="grow"></div>
+                <IconLink icon="uil:500px" href="https://500px.com/p/qrtz" />
+                <IconLink
+                    icon="ion:logo-twitter"
+                    href="https://twitter.com/qrtz_it"
+                />
+                <IconLink
+                    icon="ion:logo-github"
+                    href="https://github.com/qt2"
+                />
+            </header>
+            <main class="pb-16">
+                <div class="h-96 flex items-center">
+                    <span
+                        class="text-5xl font-medium font-quicksand leading-tight"
+                    >
+                        Hello,<br />
+                        I'm qrtz!
+                    </span>
+                    <div class="grow"></div>
+                    <img
+                        src="/ghost.png"
+                        height="160"
+                        width="160"
+                        class="animate-floating"
+                    />
+                </div>
+                <Card
+                    title="Profile"
+                    subtitle="プロフィール"
+                    icon="ion:accessibility"
+                >
+                    <div
+                        class="flex flex-col sm:flex-row items-center gap-12 sm:gap-12 lg:gap-20"
+                    >
+                        <div class="avatar">
+                            <div
+                                class="w-36 rounded-full ring-4 ring-offset-2 ring-base-100 ring-offset-base-100"
+                            >
+                                <img src="/avatar.jpg" />
+                            </div>
+                        </div>
+                        <ul
+                            class="list-disc gap-2 marker:text-base-100 font-light text-neutral-800"
+                        >
+                            <li>
+                                東京大学工学部
+                                システム創成学科に所属しています。
+                            </li>
+                            <li>個人でアプリケーション開発を行っています。</li>
+                            <li>
+                                フロントサイド、サーバーサイドともに幅広いフレームワークに触れてきました。
+                            </li>
+                            <br />
+                            <li>Rustが好きです🦀</li>
+                            <li>最近はTauriやWASMあたりに注目しています。</li>
+                            <br />
+                            <li>デザインにも関心があります。</li>
+                            <li>
+                                よく旅に出ます。最近500pxに写真をアップロードしはじめました。
+                            </li>
+                        </ul>
+                    </div>
+                </Card>
+                <Card
+                    title="Projects"
+                    subtitle="携わったプロジェクト"
+                    icon="ion:rocket"
+                >
+                    <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+                        <ProjectCard
+                            client:load
+                            title="Cloud Timetable"
+                            icon="📅"
+                            desc="オンライン授業のリンクを管理できる時間割アプリ"
+                            tags={["Flutter"]}
+                        >
+                            <div class="mb-8 carousel w-full space-x-4">
+                                <div class="carousel-item">
+                                    <img
+                                        src="/timetable/01.jpg"
+                                        class="bg-slate-200 rounded-box h-64"
+                                    />
+                                </div>
+                                <div class="carousel-item">
+                                    <img
+                                        src="/timetable/02.jpg"
+                                        class="bg-slate-200 rounded-box h-64"
+                                    />
+                                </div>
+                                <div class="carousel-item">
+                                    <img
+                                        src="/timetable/03.jpg"
+                                        class="bg-slate-200 rounded-box h-64"
+                                    />
+                                </div>
+                            </div>
+
+                            <p class="mb-4 text-neutral-600">
+                                コロナ禍に時間割アプリを開発しました。当時はオンライン授業が導入されたてで、授業のリンクの記載場所が講義ごとに異なり、各自でリンクを管理する必要がありました。Cloud
+                                Timetableは、リンクの管理を時間割アプリに取り込むとともに、Firebaseでクラウド上にデータを管理することで、複数端末からのシームレスなアクセスを実現しました。
+                            </p>
+
+                            <p class="mb-4 text-neutral-600">
+                                フロントサイドにはFlutterを採用し、Android、iOS、Webのマルチプラットフォーム開発をシングルコードベースで実装しました。サーバーサイドにはFlutterと相性の良いFirebaseを採用し、認証、データベースの構築を簡略化しました。
+                            </p>
+
+                            <p class="mb-4 text-neutral-400">
+                                （現在はサービスの開発を終了しています）
+                            </p>
+
+                            <div
+                                class="mt-8 mb-4 font-semibold text-lg text-primary"
+                            >
+                                <Icon
+                                    name="ion:link"
+                                    class="inline h-8"
+                                />リンク
+                            </div>
+
+                            <div class="flex gap-4">
+                                <a
+                                    class="btn btn-outline btn-primary"
+                                    href="https://play.google.com/store/apps/details?id=it.qrtz.timetable"
+                                    target="_blank"
+                                >
+                                    Google Play
+                                </a>
+                                <a class="btn btn-disabled" href="#">
+                                    App Store
+                                </a>
+                            </div>
+                        </ProjectCard>
+                        <ProjectCard
+                            client:load
+                            title="Emotalk"
+                            icon="💬"
+                            desc="OpenAI APIを用いた絵文字チャット"
+                            tags={["Next.js", "Rust"]}
+                        >
+                            <div class="mb-8 carousel w-full space-x-4">
+                                <div class="carousel-item">
+                                    <img
+                                        src="/emotalk/01.png"
+                                        class="bg-slate-200 rounded-box h-64"
+                                    />
+                                </div>
+                            </div>
+
+                            <p class="mb-4 text-neutral-600">
+                                大学の「プログラミング応用」の講義で作成したWebアプリケーションです。
+                            </p>
+
+                            <p class="mb-4 text-neutral-600">
+                                特徴として、サーバーサイドにRustのWebフレームワークaxumを使用することで、高速なレスポンスと低いメモリ使用量を実現しました。GitHub
+                                Actionsを用いてシングルバイナリのDockerイメージをビルドし、サーバーにデプロイする一連の流れを自動化しています。
+                            </p>
+
+                            <p class="mb-4 text-neutral-600">
+                                フロントサイドはNext.jsを採用し、Cloudflare
+                                PagesのEdge
+                                Runtimeを用いてレンダリングしています。
+                            </p>
+
+                            <div
+                                class="mt-8 mb-4 font-semibold text-lg text-primary"
+                            >
+                                <Icon
+                                    name="ion:link"
+                                    class="inline h-8"
+                                />リンク
+                            </div>
+
+                            <div class="flex gap-4">
+                                <a
+                                    class="btn btn-outline btn-primary"
+                                    href="https://github.com/qt2/learn-gpt-api"
+                                    target="_blank"
+                                >
+                                    ソースコード(GitHub)
+                                </a>
+                                <a
+                                    class="btn btn-outline btn-primary"
+                                    href="https://emotalk.qrtz.it/"
+                                    target="_blank"
+                                >
+                                    ライブデモ
+                                </a>
+                            </div>
+                        </ProjectCard>
+                        <ProjectCard
+                            client:load
+                            title="qrtz.it"
+                            icon="🏠"
+                            desc="qrtzのポートフォリオサイト"
+                            tags={["Astro.js"]}
+                        >
+                            <div class="mb-8 carousel w-full space-x-4">
+                                <div class="carousel-item">
+                                    <img
+                                        src="/portfolio/01.png"
+                                        class="bg-slate-200 rounded-box h-64"
+                                    />
+                                </div>
+                            </div>
+
+                            <p class="mb-4 text-neutral-600">
+                                このポートフォリオサイトです。
+                            </p>
+
+                            <p class="mb-4 text-neutral-600">
+                                更新頻度やページの分量を考慮してAstro.jsを用いた静的Webサイトで作成しました。スタイリングにはTailwind
+                                CSSとDaisy UIを採用しています。
+                            </p>
+
+                            <p class="mb-4 text-neutral-600">
+                                デプロイ先はCloudflare Pagesを利用しました。
+                            </p>
+
+                            <div
+                                class="mt-8 mb-4 font-semibold text-lg text-primary"
+                            >
+                                <Icon
+                                    name="ion:link"
+                                    class="inline h-8"
+                                />リンク
+                            </div>
+
+                            <div class="flex gap-4">
+                                <a
+                                    class="btn btn-outline btn-primary"
+                                    href="https://github.com/qt2/qrtz-it"
+                                    target="_blank"
+                                >
+                                    ソースコード(GitHub)
+                                </a>
+                            </div>
+                        </ProjectCard>
+                        <div
+                            class="py-8 flex flex-col gap-2 justify-center items-center text-base-300"
+                        >
+                            <Icon
+                                name="ion:lock-closed"
+                                class="h-10 text-base-200"
+                            />
+                            and more private projects!
+                        </div>
+                    </div>
+                </Card>
+                <div class="relative p-12 text-center">
+                    <h2 class="mb-8 text-3xl font-semibold">Get in touch</h2>
+                    <div class="flex justify-center gap-8">
+                        <IconLink
+                            icon="ion:logo-github"
+                            href="https://github.com/qt2"
+                        />
+                        <IconLink
+                            icon="ion:logo-twitter"
+                            href="https://twitter.com/qrtz_it"
+                        />
+                        <IconLink
+                            icon="uil:500px"
+                            href="https://500px.com/p/qrtz"
+                        />
+                    </div>
+                </div>
+            </main>
+        </div>
+        <footer
+            class="footer footer-center p-4 bg-neutral-800 text-neutral-200"
+        >
+            © {new Date().getFullYear()} qrtz
+        </footer>
+    </div>
+</Layout>

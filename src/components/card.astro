@@ -1,0 +1,23 @@
+---
+import { Icon } from "astro-icon";
+
+export interface Props {
+	title: string;
+	subtitle: string;
+	icon: string;
+}
+
+const { title, subtitle, icon } = Astro.props;
+---
+
+<div class="relative mb-8 p-12 rounded-2xl bg-white shadow-md">
+	<div class="mb-12 flex items-center">
+		<div class="grow">
+			<div class="text-xs font-semibold text-primary">{subtitle}</div>
+			<h2 class="text-3xl font-semibold">{title}</h2>
+		</div>
+		<Icon name={icon} class="h-12 text-base-100" />
+	</div>
+
+	<slot />
+</div>
